@@ -1,0 +1,131 @@
+/* pages/index/index.wxss */
+
+/* 轮播图 */
+.banners {
+    width: 100%;
+    height: 300rpx;
+}
+
+.banners image {
+    width: 100%;
+    height: 100%;
+}
+
+/* 导航 */
+.navContainer {
+    display: flex;
+
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+}
+
+.navItem>text {
+    font-size: 26rpx;
+}
+
+.navItem>.iconfont {
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgb(240, 20, 20);
+    font-size: 50rpx;
+    color: white;
+    margin: 20rpx 0;
+}
+
+/* 推荐歌曲 */
+.recommendContainer {
+    padding: 20rpx;
+}
+
+/* 推荐歌曲 内容 */
+.recommendScroll {
+    display: flex;
+    height: 300rpx;
+}
+
+.scrollItem {
+    width: 200rpx;
+    margin-right: 20rpx;
+}
+
+.scrollItem image {
+    width: 200rpx;
+    height: 200rpx;
+    border-radius: 10rpx;
+}
+
+.scrollItem text {
+    font-size: 26rpx;
+
+    /* 单行文本溢出隐藏 */
+    /* display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+
+    /* 多行文本溢出 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical; /* 设置对齐模式 */
+    -webkit-line-clamp: 2; /* 对齐的行数 */
+}
+
+/* 排行榜 */
+.topList {
+    padding: 0 20rpx;
+}
+
+/* 排行榜 内容 */
+.topListSwiper {
+    height: 660rpx;
+    background-color: #fbfbfbfb;
+}
+
+.swiperItem {
+    width: 96%;
+    padding: 0 20rpx;
+}
+
+.swiperItem .title {
+    font-size: 30rpx;
+    line-height: 80rpx;
+}
+
+.musicItem {
+    /* 当一个元素被设为 flex，其子元素自动变成 block 元素 */
+    display: flex;
+    margin-bottom: 20rpx;
+}
+
+.musicItem image {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 6rpx;
+}
+
+.musicItem .count {
+    /* inline 元素无法设置宽高等样式，解决方案见父元素 */
+    width: 100rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.musicItem .musicName {
+    height: 100rpx;
+    line-height: 100rpx;
+    
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

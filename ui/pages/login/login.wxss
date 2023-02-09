@@ -1,0 +1,39 @@
+/* pages/login/login.wxss *//* pages/login/login.wxss */.wrapper{
+  position:relative;
+  z-index: 90;
+  padding-bottom: 40rpx;
+  text-align: center;
+}
+
+.welcome{
+  font-size: 46rpx;
+  color: #555;
+  padding: 100rpx 0;
+}
+
+.login-qr-image {
+    background-color: #fbfbfb;
+    border: 2px solid #dddddd;
+    width: 500rpx;
+    height: 500rpx;
+}
+
+.register-section{
+  position:absolute;
+  left: 0;
+  bottom: 50rpx;
+  width: 100%;
+  font-size: 28rpx;
+  color: #606266;
+  text-align: center;
+
+}
+.register-section text{
+  color: #4399fc;
+  margin-left: 10rpx;
+}
+
+.warning {
+    text-align: center;
+    font-size: 24rpx;
+}

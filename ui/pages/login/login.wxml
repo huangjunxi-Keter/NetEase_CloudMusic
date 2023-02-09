@@ -1,0 +1,20 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+    <view class="wrapper">
+        <view class="welcome">
+            扫码登录
+        </view>
+        <image class="login-qr-image" src="{{ qrBase64 }}" />
+    </view>
+    <view class="warning">
+        <text>
+            我知道在手机上扫码登录很蠢b \n
+            但是账号登录的api挂了 \t 只剩扫码了\n
+            api不是我写的 \n
+        </text>
+    </view>
+    <view class="register-section">
+        还没有账号?
+        <text>马上注册</text>
+    </view>
+</view>

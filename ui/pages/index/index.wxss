@@ -86,13 +86,13 @@
 
 /* 排行榜 内容 */
 .topListSwiper {
-    height: 660rpx;
+    height: 680rpx;
     background-color: #fbfbfbfb;
 }
 
 .swiperItem {
     width: 96%;
-    padding: 0 20rpx;
+    padding: 0 20rpx 20rpx 20rpx;
 }
 
 .swiperItem .title {

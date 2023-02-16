@@ -75,6 +75,8 @@ Page({
                 return;
             } else if (QrState.code === 803) { // 登录成功
                 clearInterval(timer);
+                // 将cookie存储至本地（同步）
+                wx.setStorageSync('cookie', QrState.cookie);
                 let res = await request(`/login/status?timerstamp=${Date.now()}`, {
                     cookie: QrState.cookie
                 }, 'post');

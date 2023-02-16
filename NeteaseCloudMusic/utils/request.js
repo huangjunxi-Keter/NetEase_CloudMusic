@@ -21,9 +21,19 @@
  import config from './config'
 
 export default (url, data = {}, method = 'Get') => {
+
+    let cookie = wx.getStorageSync('cookie');
+    
+    if (cookie) {
+        cookie = cookie.substring(cookie.indexOf('MUSIC_U'), cookie.length);
+    }
+
     return new Promise((resolve, reject) => {
         // 1. new Promise 初始化 promise 实例状态为 pending
         wx.request({
+            header: {
+                cookie
+            },
             method,
             url: config.host + url,
             data,

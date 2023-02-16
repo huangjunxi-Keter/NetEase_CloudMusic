@@ -18,7 +18,7 @@
             <view class="tit">
                 <!-- 会员图标-->
                 <text class="iconfont icon-huiyuan-"></text>
-                硅谷会员
+                黑胶VIP
             </view>
             <text class="e-m">atguigu Union</text>
             <text class="e-b">开通会员听歌, 撸代码</text>
@@ -53,6 +53,12 @@
             <view class="recentPlayContainer">
                 <text class="title">最近播放</text>
                 <!-- 最近播放记录 -->
+                <scroll-view class="recentScroll" wx:if="{{ recentPlayList.length }}" scroll-x enable-flex>
+                    <view wx:for="{{ recentPlayList }}" wx:key="id" class="recentItem">
+                        <image src="{{ item.song.al.picUrl }}" />
+                    </view>
+                </scroll-view>
+                <view class="notRecentMsg" wx:else>暂无播放记录</view>
             </view>
 
             <view class="cardList">

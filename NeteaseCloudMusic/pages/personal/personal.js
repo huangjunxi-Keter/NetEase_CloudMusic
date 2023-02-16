@@ -1,4 +1,7 @@
 // pages/personal/personal.js
+
+import request from '../../utils/request'
+
 Page({
 
     /**
@@ -11,7 +14,8 @@ Page({
         userInfo: {
             avatarUrl: '/static/images/personal/missing-face.png',
             nickname: '游客'
-        }
+        },
+        recentPlayList: []
     },
 
     //#region 拉动效果
@@ -48,10 +52,29 @@ Page({
         if (this.data.userInfo.nickname === '游客') {
             wx.reLaunch({
                 url: '/pages/login/login'
-              });
+            });
         } else {
             console.log("toLogin:", "已登录，不进行跳转");
         }
+    },
+    //#endregion
+
+    //#region 获取最近播放
+    async getRencentPlayListData(userId) {
+        let recentPlayListData = await request('/user/record', {
+            uid: userId,
+            type: 1
+        });
+
+        let index = 0;
+        let recentPlayList = recentPlayListData.weekData.splice(0, 10).map(item => {
+            item.id = index++;
+            return item;
+        });
+
+        this.setData({
+            recentPlayList
+        });
     },
     //#endregion
 
@@ -65,6 +88,8 @@ Page({
             this.setData({
                 userInfo: JSON.parse(userInfo)
             });
+            
+            this.getRencentPlayListData(this.data.userInfo.userId);
         }
     },
 

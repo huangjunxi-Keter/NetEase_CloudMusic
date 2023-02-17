@@ -8,8 +8,8 @@
     </view>
 
     <!-- 导航 -->
-    <scroll-view class="navScroll" scroll-x enable-flex>
-        <view class="navItem" wx:for="{{ videoGroupList }}" wx:key="id">
+    <scroll-view class="navScroll" android:scrollbarThumbVertical="@android:color/transparent" scroll-x enable-flex scroll-with-animation scroll-into-view="{{ 'nav' + navId }}">
+        <view id="{{ 'nav' + item.id }}" class="navItem" wx:for="{{ videoGroupList }}" wx:key="id">
             <view class="navContent {{ item.id == navId ? 'active' : '' }}" bindtap="changNav" data-id="{{ item.id }}">
                 {{ item.name }}
             </view>
@@ -20,10 +20,12 @@
     <scroll-view class="videoScroll" scroll-y>
         <view class="videoItem" wx:for="{{ videoList }}" wx:key="id">
             <!-- <video src="{{ item.data.urlInf.url }}"></video> -->
-            <video src="{{ item.data.previewUrl }}" poster="{{ item.data.coverUrl }}"></video>
+            <video id="{{ item.data.vid }}" src="{{ item.urls[0].url }}" poster="{{ item.data.coverUrl }}" bindplay="bindlePlay"></video>
 
+            <!-- 视频标题 -->
             <view class="content">{{item.data.title}}</view>
 
+            <!-- 用户信息 -->
             <view class="footer">
                 <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
                 <text class="nickName">{{item.data.creator.nickname}}</text>

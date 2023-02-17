@@ -1822,7 +1822,11 @@ Page({
             ],
             "rcmdLimit": 8
         },
-        videoList: []
+        videoList: [],
+        videoContext: {
+            vid: '',
+            context: null
+        }
     },
 
     //#region 获取导航数据
@@ -1854,24 +1858,66 @@ Page({
 
     //#region 获取视频列表数据
     async getVideoListData() {
+        // 显示正在加载
+        wx.showLoading({
+            title: '正在加载',
+            mask: true
+        });
+
+        // 清空旧数据（用户体验，非功能性）
+        this.setData({
+            videoList: []
+        });
+
         let videoListData = await request('/video/group', {
             id: this.data.navId
         });
-        
+
         // 接口有点问题，要是获取不到就用备用数据代替
         if (videoListData.code !== 200 || !videoListData.datas.length) {
             videoListData.datas = this.data.reserveVideoList.datas;
         }
 
-        let index = 0;
-        let videoList = videoListData.datas.map(item => {
-            item.id = index++;
-            return item;
-        });
-        
+        let videoList = videoListData.datas;
+
+        // 添加唯一值，给标签做key；获取视频链接
+        for (let i = 0; i < videoList.length; i++) {
+            videoList[i].id = i;
+            let videoUrlData = await request('/video/url', {
+                id: videoList[i].data.vid
+            });
+            videoList[i].urls = videoUrlData.urls;
+        }
+
         this.setData({
             videoList
         });
+
+        // 关闭加载
+        wx.hideLoading();
+    },
+    //#endregion
+
+    //#region 点击播放的回调（阻止多个视频同时播放）
+    bindlePlay(event) {
+        let vid = event.currentTarget.id;
+
+        // 如果videoContext不为当前视频
+        if (this.data.videoContext.vid != vid) {
+
+            // 且context不为空，则暂停
+            if (this.data.videoContext.context) {
+                this.data.videoContext.context.stop();
+            }
+
+            // 创建新的控制video标签的实例对象
+            this.setData({
+                videoContext: {
+                    vid,
+                    context: wx.createVideoContext(vid)
+                }
+            });
+        }
     },
     //#endregion
 

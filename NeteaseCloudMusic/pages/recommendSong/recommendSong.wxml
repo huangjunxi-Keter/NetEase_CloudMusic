@@ -1,0 +1,11 @@
+<!--pages/recommendSong/recommendSong.wxml-->
+<view class="recommendSongContainer">
+    <!-- 头部 -->
+    <view class="header">
+        <image src="/static/images/recommendSong/recommendSong.jpg"/>
+        <view class="date">
+            <text class="day">{{ day }}</text>
+            <text class="month">/ {{ month }}</text>
+        </view>
+    </view>
+</view>

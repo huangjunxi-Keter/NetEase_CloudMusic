@@ -13,7 +13,8 @@ Page({
         coverTransition: '',
         userInfo: {
             avatarUrl: '/static/images/personal/missing-face.png',
-            nickname: '游客'
+            nickname: '游客',
+            backgroundUrl: '/static/images/personal/bgImg2.jpg'
         },
         recentPlayList: []
     },

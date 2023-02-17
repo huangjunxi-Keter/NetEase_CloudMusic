@@ -1826,7 +1826,8 @@ Page({
         videoContext: {
             vid: '',
             context: null
-        }
+        },
+        isTriggered: true
     },
 
     //#region 获取导航数据
@@ -1900,7 +1901,7 @@ Page({
 
     //#region 点击播放的回调（阻止多个视频同时播放）
     bindlePlay(event) {
-        let vid = event.currentTarget.id;
+        let vid = event.currentTarget.dataset.id;
 
         // 如果videoContext不为当前视频
         if (this.data.videoContext.vid != vid) {
@@ -1910,14 +1911,34 @@ Page({
                 this.data.videoContext.context.stop();
             }
 
-            // 创建新的控制video标签的实例对象
+            // 创建新的控制video标签的实例对象, 并播放（传入的参数相是video的id）
+            let context = wx.createVideoContext(vid);
+            context.play();
+
             this.setData({
                 videoContext: {
                     vid,
-                    context: wx.createVideoContext(vid)
+                    context
                 }
             });
+        } else {
+            this.data.videoContext.context.play();
         }
+    },
+    //#endregion
+
+    //#region scroll-view下拉回调
+    handleRefresher() {
+        this.getVideoListData();
+        this.setData({
+            isTriggered: false
+        });
+    },
+    //#endregion
+
+    //#region scroll-view上拉回调
+    handleToLower() {
+        console.log("无可追加数据");
     },
     //#endregion
 
@@ -1974,6 +1995,6 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage() {
-
+        
     }
 })

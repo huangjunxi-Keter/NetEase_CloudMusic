@@ -1,7 +1,7 @@
 /* pages/video/video.wxss */
 .viceoContainer .header {
     display: flex;
-    margin: 20rpx;
+    padding: 20rpx;
 }
 
 .viceoContainer .header image {
@@ -56,16 +56,26 @@
 /* 视频 */
 .videoScroll {
     margin-top: 15rpx;
+    height: calc(100vh - 180rpx);
 }
 
 .videoItem {
     padding: 0 3%;
 }
 
-.videoItem video {
+.videoItem video,
+.videoItem image {
     width: 100%;
     height: 360rpx;
     border-radius: 10rpx;
+}
+
+.videoItem .play {
+    display: block;
+}
+
+.videoItem .stop {
+    display: none;
 }
 
 .videoItem .content {

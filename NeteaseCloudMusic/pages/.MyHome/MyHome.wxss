@@ -1,0 +1,85 @@
+/* pages/.MyHome/MyHome.wxss */
+.bodyer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #434750;
+}
+
+list-view {
+    position: relative;
+    transform: skewY(-15deg);
+}
+
+/* 正面 */
+list-view scroll-view {
+    position: relative;
+    width: 300rpx;
+    background: #3e3f46;
+    padding: 30rpx;
+    transition: 0.5s;
+}
+
+/* 左面 */
+list-view scroll-view::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60rpx;
+    width: 60rpx;
+    height: 100%;
+    background-color: #2e3133;
+    transform-origin: right;
+    transform: skewY(45deg);
+    transition: 0.5s;
+}
+
+/* 顶面 */
+list-view scroll-view::after {
+    content: '';
+    position: absolute;
+    top: -60rpx;
+    left: 0;
+    width: 100%;
+    height: 60rpx;
+    background-color: #35383e;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    transition: 0.5s;
+}
+
+/* 正面（悬停） */
+list-view scroll-view:hover {
+    background: #33a3ee;
+    transition: 0.5s;
+    transform:  translateX(-50rpx);
+}
+
+/* 左面（悬停） */
+list-view scroll-view:hover::before {
+    background: #1f5378;
+}
+
+/* 顶面（悬停） */
+list-view scroll-view:hover::after {
+    background: #2982b9;
+}
+
+list-view scroll-view:last-child::after {
+    box-shadow: -200rpx 200rpx 25rpx rgba(0, 0, 0, 0.25);
+}
+
+list-view scroll-view text {
+    text-decoration: none;
+    color: #999;
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+list-view scroll-view:hover text {
+    color: #fff;
+
+}

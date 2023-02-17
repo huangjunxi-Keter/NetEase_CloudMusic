@@ -1,0 +1,14 @@
+<!--pages/.MyHome/MyHome.wxml-->
+<view class="bodyer">
+    <list-view>
+        <scroll-view style="z-index: 3;" bindtap="go" data-page="index">
+            <text>仿网易云音乐</text>
+        </scroll-view>
+        <scroll-view style="z-index: 2;" bindtap="go" data-page="index">
+            <text>仿网易云音乐</text>
+        </scroll-view>
+        <scroll-view style="z-index: 1;" bindtap="go" data-page="index">
+            <text>仿网易云音乐</text>
+        </scroll-view>
+    </list-view>
+</view>

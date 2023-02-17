@@ -4,7 +4,8 @@
         <view class="welcome">
             扫码登录
         </view>
-        <image class="login-qr-image" src="{{ qrBase64 }}" />
+        <image class="login-qr-image"
+               src="{{ qrBase64 }}" />
     </view>
     <view class="warning">
         <text>

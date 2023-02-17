@@ -8,26 +8,55 @@
     </view>
 
     <!-- 导航 -->
-    <scroll-view class="navScroll" android:scrollbarThumbVertical="@android:color/transparent" scroll-x enable-flex scroll-with-animation scroll-into-view="{{ 'nav' + navId }}">
-        <view id="{{ 'nav' + item.id }}" class="navItem" wx:for="{{ videoGroupList }}" wx:key="id">
-            <view class="navContent {{ item.id == navId ? 'active' : '' }}" bindtap="changNav" data-id="{{ item.id }}">
+    <scroll-view class="navScroll"
+                 scroll-x
+                 enable-flex
+                 scroll-with-animation
+                 scroll-into-view="{{ 'nav' + navId }}">
+        <view id="{{ 'nav' + item.id }}"
+              class="navItem"
+              wx:for="{{ videoGroupList }}"
+              wx:key="id">
+            <view class="navContent {{ item.id == navId ? 'active' : '' }}"
+                  bindtap="changNav"
+                  data-id="{{ item.id }}">
                 {{ item.name }}
             </view>
         </view>
     </scroll-view>
 
     <!-- 视频列表 -->
-    <scroll-view class="videoScroll" scroll-y>
-        <view class="videoItem" wx:for="{{ videoList }}" wx:key="id">
+    <scroll-view class="videoScroll"
+                 scroll-y
+                 refresher-enabled
+                 bindrefresherrefresh="handleRefresher"
+                 refresher-triggered="{{ isTriggered }}"
+                 bindscrolltolower="handleToLower">
+        <view class="videoItem"
+              wx:for="{{ videoList }}"
+              wx:key="id">
             <!-- <video src="{{ item.data.urlInf.url }}"></video> -->
-            <video id="{{ item.data.vid }}" src="{{ item.urls[0].url }}" poster="{{ item.data.coverUrl }}" bindplay="bindlePlay"></video>
+            <video id="{{ item.data.vid }}"
+                   class="{{ videoContext.vid === item.data.vid ? 'play':'stop' }}"
+                   src="{{ item.urls[0].url }}"
+                   poster="{{ item.data.coverUrl }}"
+                   object-fit="cover"
+                   bindplay="bindlePly"
+                   data-id="{{ item.data.vid }}"></video>
+
+            <!-- 性能优化：使用image代替未播放的video -->
+            <image class="{{ videoContext.vid === item.data.vid ? 'stop':'play' }}"
+                   src="{{ item.data.coverUrl }}"
+                   bindtap="bindlePlay"
+                   data-id="{{ item.data.vid }}" />
 
             <!-- 视频标题 -->
             <view class="content">{{item.data.title}}</view>
 
             <!-- 用户信息 -->
             <view class="footer">
-                <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+                <image class="avatar"
+                       src="{{item.data.creator.avatarUrl}}"></image>
                 <text class="nickName">{{item.data.creator.nickname}}</text>
                 <view class="comments_praised">
                     <text class="item">
@@ -38,7 +67,9 @@
                         <text class="iconfont icon-pinglun1"></text>
                         <text class="count">{{item.data.commentCount}}</text>
                     </text>
-                    <button open-type="share" class="item btn">
+                    <!-- open-type="share" 实现转发 -->
+                    <button open-type="share"
+                            class="item btn">
                         <text class="iconfont icon-gengduo"></text>
                     </button>
                 </view>

@@ -1,4 +1,7 @@
 // pages/recommendSong/recommendSong.js
+
+import request from '../../utils/request'
+
 Page({
 
     /**
@@ -6,18 +9,64 @@ Page({
      */
     data: {
         day: '',
-        month: ''
+        month: '',
+        recommendSongList: []
     },
+
+    //#region 获取每日推荐列表
+    async getRecommendSongListData() {
+        let recommendSongListData = await request('/recommend/songs');
+        let recommendSongList = recommendSongListData.data.dailySongs.map(item => {
+            item.artistStr = '';
+            for(let i = 0; i < item.ar.length; i++) {
+                if (i > 0) {
+                    item.artistStr += '/';
+                }
+                item.artistStr += item.ar[i].name;
+            }
+            return item;
+        });
+        this.setData({
+            recommendSongList
+        });
+    },
+    //#endregion
+
+    //#region 跳转到音乐详情
+    toSongDetail(event) {
+        let song = event.currentTarget.dataset.song;
+        wx.navigateTo({
+          url: '/pages/songDetail/songDetail?songId=' + song.id,
+        });
+    },
+    //#endregion
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad(options) {
+        // 判断用户是否登录
+        let userInfo = wx.getStorageSync('userInfo');
+        if (!userInfo) {
+            wx.showToast({
+                title: '请先登录',
+                icon: 'none',
+                success: () => {
+                    wx.reLaunch({
+                        url: '/pages/login/login',
+                    })
+                }
+            });
+        }
+
         // 获取日期
         this.setData({
             day: new Date().getDate(),
             month: new Date().getMonth() + 1
         });
+
+        // 获取每日推荐
+        this.getRecommendSongListData();
     },
 
     /**

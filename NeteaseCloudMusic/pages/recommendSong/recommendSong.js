@@ -1,6 +1,7 @@
 // pages/recommendSong/recommendSong.js
 
-import request from '../../utils/request'
+import request from '../../utils/request';
+import PubSub from 'pubsub-js';
 
 Page({
 
@@ -18,7 +19,7 @@ Page({
         let recommendSongListData = await request('/recommend/songs');
         let recommendSongList = recommendSongListData.data.dailySongs.map(item => {
             item.artistStr = '';
-            for(let i = 0; i < item.ar.length; i++) {
+            for (let i = 0; i < item.ar.length; i++) {
                 if (i > 0) {
                     item.artistStr += '/';
                 }
@@ -34,9 +35,13 @@ Page({
 
     //#region 跳转到音乐详情
     toSongDetail(event) {
-        let song = event.currentTarget.dataset.song;
+        let {
+            song,
+            index
+        } = event.currentTarget.dataset;
+
         wx.navigateTo({
-          url: '/pages/songDetail/songDetail?songId=' + song.id,
+            url: `/pages/songDetail/songDetail?songId=${song.id}&index=${index}&songListType=recommend`,
         });
     },
     //#endregion

@@ -79,6 +79,19 @@ Page({
     },
     //#endregion
 
+    //#region 跳转到音乐详情
+    toSongDetail(event) {
+        let {
+            songid,
+            index
+        } = event.currentTarget.dataset;
+        
+        wx.navigateTo({
+            url: `/pages/songDetail/songDetail?songId=${songid}&index=${index}&songListType=user`,
+        });
+    },
+    //#endregion
+
     /**
      * 生命周期函数--监听页面加载
      */

@@ -75,9 +75,12 @@
                              wx:if="{{ recentPlayList.length }}"
                              scroll-x
                              enable-flex>
-                    <view wx:for="{{ recentPlayList }}"
+                    <view class="recentItem"
+                          wx:for="{{ recentPlayList }}"
                           wx:key="id"
-                          class="recentItem">
+                          bindtap="toSongDetail"
+                          data-songId="{{ item.song.id }}"
+                          data-index="{{ index }}">
                         <image src="{{ item.song.al.picUrl }}" />
                     </view>
                 </scroll-view>

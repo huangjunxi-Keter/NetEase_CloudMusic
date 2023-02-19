@@ -1,12 +1,13 @@
 {
     "pages": [
-        "pages/recommendSong/recommendSong",
-        "pages/songDetail/songDetail",
         "pages/.MyHome/MyHome",
+        "pages/index/index",
+        "pages/recommendSong/recommendSong",
+        "pages/search/search",
+        "pages/songDetail/songDetail",
         "pages/video/video",
         "pages/personal/personal",
-        "pages/login/login",
-        "pages/index/index"
+        "pages/login/login"
     ],
     "style": "v2",
     "sitemapLocation": "sitemap.json",
@@ -40,5 +41,8 @@
             }
         ]
     },
-    "requiredBackgroundModes": ["audio"]
+    "requiredBackgroundModes": [
+        "audio"
+    ],
+    "lazyCodeLoading": "requiredComponents"
 }

@@ -12,8 +12,31 @@ Page({
     data: {
         bannersArray: null,
         recommendArray: null,
-        topArray: null
+        topArray: null,
     },
+
+    //#region 跳转到每日推荐
+    toRecommendSong() {
+        wx.navigateTo({
+            url: '/pages/recommendSong/recommendSong',
+        });
+    },
+    //#endregion
+
+    //#region 跳转到音乐详情
+    toSongDetail(event) {
+        let {
+            songid,
+            index,
+            songlisttype,
+            songlistid
+        } = event.currentTarget.dataset;
+
+        wx.navigateTo({
+            url: `/pages/songDetail/songDetail?songId=${songid}&index=${index}&songListId=${songlistid}&songListType=${songlisttype}`,
+        });
+    },
+    //#endregion
 
     /**
      * 生命周期函数--监听页面加载
@@ -55,6 +78,7 @@ Page({
                 limit: 5
             });
             let topDataItem = {
+                id: tops.list[i].id,
                 name: tops.list[i].name,
                 tracks: result.songs
             };

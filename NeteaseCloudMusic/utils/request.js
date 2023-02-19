@@ -18,12 +18,12 @@
  *           }
  */
 
- import config from './config'
+import config from './config'
 
 export default (url, data = {}, method = 'Get') => {
 
     let cookie = wx.getStorageSync('cookie');
-    
+
     if (cookie) {
         cookie = cookie.substring(cookie.indexOf('MUSIC_U'), cookie.length);
     }

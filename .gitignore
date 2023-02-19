@@ -1,0 +1,11 @@
+.DS_Store
+
+NeteaseCloudMusicApi/node_modules
+NeteaseCloudMusic/node_modules
+NeteaseCloudMusic/miniprogram_npm
+
+*.log
+.idea
+.vscode
+.history
+examples/moddef.json

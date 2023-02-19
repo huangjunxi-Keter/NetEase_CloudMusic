@@ -14,7 +14,7 @@
 
     <!-- 导航区 -->
     <view class="navContainer">
-        <view class="navItem">
+        <view class="navItem" bindtap="toRecommendSong">
             <text class="iconfont icon-meirituijian"></text>
             <text>每日推荐</text>
         </view>
@@ -73,7 +73,12 @@
                           wx:for="{{ top.tracks }}"
                           wx:for-item="music"
                           wx:for-index="musicIndex"
-                          wx:key="id">
+                          wx:key="id"
+                          bindtap="toSongDetail"
+                          data-songListId="{{ top.id }}"
+                          data-songListType="playlist"
+                          data-songId="{{ music.id }}"
+                          data-index="{{ musicIndex }}">
                         <image src="{{ music.al.picUrl }}" />
                         <text class="count">{{ musicIndex + 1 }}</text>
                         <text class="musicName">{{ music.name }}</text>

@@ -23,7 +23,8 @@
               wx:for="{{ recommendSongList }}"
               wx:key="id"
               bindtap="toSongDetail"
-              data-song="{{ item }}">
+              data-song="{{ item }}"
+              data-index="{{ index }}">
             <image src="{{ item.al.picUrl }}" />
             <view class="musicInfo">
                 <text class="musicName">{{ item.name }}</text>

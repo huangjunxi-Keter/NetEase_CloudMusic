@@ -1942,6 +1942,14 @@ Page({
     },
     //#endregion
 
+    //#region 跳转到搜索页面
+    toSearch() {
+        wx.navigateTo({
+          url: '/pages/search/search',
+        })
+    },
+    //#endregion
+
     /**
      * 生命周期函数--监听页面加载
      */

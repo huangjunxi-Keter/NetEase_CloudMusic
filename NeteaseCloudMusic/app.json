@@ -2,12 +2,12 @@
     "pages": [
         "pages/.MyHome/MyHome",
         "pages/index/index",
-        "pages/recommendSong/recommendSong",
-        "pages/search/search",
-        "pages/songDetail/songDetail",
         "pages/video/video",
+        "pages/search/search",
         "pages/personal/personal",
-        "pages/login/login"
+        "pages/login/login",
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail"
     ],
     "style": "v2",
     "sitemapLocation": "sitemap.json",
